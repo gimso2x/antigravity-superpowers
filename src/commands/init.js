@@ -25,12 +25,18 @@ function parseInitArgs(args) {
   const parsed = {
     target: ".",
     force: false,
+    global: false,
   };
   let targetSet = false;
 
   for (const arg of args) {
     if (arg === "--force" || arg === "-f") {
       parsed.force = true;
+      continue;
+    }
+
+    if (arg === "--global" || arg === "-g") {
+      parsed.global = true;
       continue;
     }
 
@@ -72,12 +78,15 @@ export async function initCommand(args, { cwd, stdout, stderr, homedir }) {
     return 1;
   }
 
-  const targetDir = resolve(cwd, parsed.target);
+  const home = homedir ?? osHomedir();
+  const targetDir = parsed.global ? home : resolve(cwd, parsed.target);
   const agentDir = join(targetDir, ".agent");
   const templateDir = getTemplateDir();
 
   try {
-    await validateTargetDir(targetDir);
+    if (!parsed.global) {
+      await validateTargetDir(targetDir);
+    }
 
     const templateExists = await exists(templateDir);
     if (!templateExists) {
@@ -88,8 +97,9 @@ export async function initCommand(args, { cwd, stdout, stderr, homedir }) {
 
     const agentExists = await exists(agentDir);
     if (agentExists && !parsed.force) {
+      const location = parsed.global ? "Global" : "Local";
       stderr.write(
-        `.agent already exists at ${agentDir}. Re-run with --force to replace it.\n`,
+        `${location} .agent already exists at ${agentDir}. Re-run with --force to replace it.\n`,
       );
       return 1;
     }
@@ -100,12 +110,17 @@ export async function initCommand(args, { cwd, stdout, stderr, homedir }) {
 
     await cp(templateDir, agentDir, { recursive: true });
 
-    stdout.write(`Initialized Antigravity Superpowers profile at ${agentDir}\n`);
+    const msg = parsed.global
+      ? `Initialized Global Antigravity Superpowers profile at ${agentDir}`
+      : `Initialized Antigravity Superpowers profile at ${agentDir}`;
+    stdout.write(`${msg}\n`);
 
     // GEMINI.md 글로벌 룰 설치
     await installGeminiGlobalRules({ stdout, force: parsed.force, homedir });
 
-    stdout.write("Next step: bash .agent/tests/run-tests.sh\n");
+    if (!parsed.global) {
+      stdout.write("Next step: bash .agent/tests/run-tests.sh\n");
+    }
     stdout.write(
       "Note: docs/plans/task.md is created at runtime by skills when task tracking starts.\n",
     );

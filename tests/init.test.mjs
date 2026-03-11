@@ -165,3 +165,43 @@ test("init replaces GEMINI.md with --force", async () => {
     await rm(fakeHome, { recursive: true, force: true });
   }
 });
+
+test("init --global installs to ~/.agent/", async () => {
+  const projectDir = await createTempProject("agsp-global-proj-");
+  const fakeHome = await createTempProject("agsp-global-home-");
+
+  try {
+    const { io } = createBufferedIO(projectDir, fakeHome);
+    const exitCode = await initCommand(["--global"], io);
+    assert.equal(exitCode, 0);
+
+    const agentPath = join(fakeHome, ".agent", "AGENTS.md");
+    const hasAgent = await pathExists(agentPath);
+    assert.equal(hasAgent, true, "Global .agent should be installed");
+    
+    const geminiPath = join(fakeHome, ".gemini", "GEMINI.md");
+    const hasGemini = await pathExists(geminiPath);
+    assert.equal(hasGemini, true, "Global GEMINI.md should also be installed");
+  } finally {
+    await rm(projectDir, { recursive: true, force: true });
+    await rm(fakeHome, { recursive: true, force: true });
+  }
+});
+
+test("init --global fails when ~/.agent exists without --force", async () => {
+  const projectDir = await createTempProject("agsp-global-fail-proj-");
+  const fakeHome = await createTempProject("agsp-global-fail-home-");
+
+  try {
+    // 기존 .agent 생성
+    const agentDir = join(fakeHome, ".agent");
+    await mkdir(agentDir, { recursive: true });
+
+    const { io } = createBufferedIO(projectDir, fakeHome);
+    const exitCode = await initCommand(["--global"], io);
+    assert.equal(exitCode, 1);
+  } finally {
+    await rm(projectDir, { recursive: true, force: true });
+    await rm(fakeHome, { recursive: true, force: true });
+  }
+});

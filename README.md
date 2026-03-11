@@ -25,6 +25,8 @@ Superpowers is an incredible skill-based workflow system that gives AI coding as
 
 ```bash
 npx antigravity-super-ssuk init
+# OR install globally
+npx antigravity-super-ssuk init --global
 ```
 
 ---
@@ -88,6 +90,10 @@ antigravity-super-ssuk init
 ```bash
 # Initialize in current directory
 antigravity-super-ssuk init
+
+# Initialize globally (installs to ~/.agent/)
+# This makes Superpowers available to ALL projects automatically.
+antigravity-super-ssuk init --global
 
 # Initialize in a specific project
 antigravity-super-ssuk init /path/to/project
