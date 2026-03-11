@@ -78,11 +78,13 @@ These thoughts mean STOP—you're rationalizing:
 
 When multiple skills could apply, use this order:
 
-1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
-2. **Implementation skills second** (frontend-design, mcp-builder) - these guide execution
+1. **Process skills first** (brainstorming, debugging, verification) - these determine HOW to approach the task
+2. **Implementation skills second** (domain agents: frontend-agent, backend-agent, qa-agent) - these guide execution with technical expertise
 
-"Let's build X" → brainstorming first, then implementation skills.
-"Fix this bug" → debugging first, then domain-specific skills.
+"Let's build X" → brainstorming first, then domain-specific agent.
+"Fix this bug" → systematic-debugging first, then domain-specific agent.
+"Review security" → qa-agent directly.
+"Fix frontend issue" → systematic-debugging first, then frontend-agent.
 
 ## Skill Types
 

@@ -36,6 +36,7 @@ When source skills reference legacy tool names, use these Antigravity equivalent
 - First preference: project skills at `.agent/skills`.
 - Second preference: user skills at `~/.gemini/skills`.
 - If both exist, project-local skills win for this profile.
+- Domain agents (frontend-agent, backend-agent, qa-agent) provide technical expertise for specific domains and are invoked after process skills.
 - Optional parity assets may exist at `.agent/workflows/*` and `.agent/agents/*` as entrypoint shims/reference profiles.
 - These assets do not change the strict single-flow execution requirements in this file.
 

@@ -56,7 +56,7 @@ digraph when_to_use {
 - Tasks are tightly coupled and need full system understanding
 - Single simple task that doesn't need review structure
 
-**vs. Executing Plans (worktree-based):**
+**vs. Executing Plans:**
 
 - Same session (no context switch)
 - Fresh `task_boundary` per task (clean scope)
@@ -87,7 +87,7 @@ digraph process {
     "Read plan, extract all tasks with full text, note context" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Run final code review for entire implementation" [shape=box];
-    "Use finishing-a-development-branch skill" [shape=box style=filled fillcolor=lightgreen];
+    "All tasks complete" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract all tasks with full text, note context" -> "Execute implementation (./implementer-prompt.md)";
     "Execute implementation (./implementer-prompt.md)" -> "Questions about requirements?";
@@ -106,7 +106,7 @@ digraph process {
     "Mark task complete in docs/plans/task.md" -> "More tasks remain?";
     "More tasks remain?" -> "Execute implementation (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Run final code review for entire implementation" [label="no"];
-    "Run final code review for entire implementation" -> "Use finishing-a-development-branch skill";
+    "Run final code review for entire implementation" -> "All tasks complete";
 }
 ```
 
@@ -284,7 +284,6 @@ Code review: Approved
 [Run final code review on entire implementation]
 Final review: All requirements met, ready to merge
 
-[Use finishing-a-development-branch skill]
 Done!
 ```
 
@@ -350,10 +349,8 @@ Before claiming all work is done:
 
 **Required workflow skills:**
 
-- **using-git-worktrees** — Set up isolated workspace before starting
 - **writing-plans** — Creates the plan this skill executes
 - **requesting-code-review** — Code review template for quality reviews
-- **finishing-a-development-branch** — Complete development after all tasks
 
 **Should also use:**
 
@@ -362,4 +359,4 @@ Before claiming all work is done:
 
 **Alternative workflow:**
 
-- **executing-plans** — Use for worktree-based parallel session execution
+- **executing-plans** — Use for batch-based execution with checkpoints
