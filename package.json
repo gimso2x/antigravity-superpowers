@@ -1,6 +1,6 @@
 {
   "name": "antigravity-super-ssuk",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "CLI to initialize the Antigravity Superpowers .agent profile",
   "type": "module",
   "bin": {
