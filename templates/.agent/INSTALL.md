@@ -33,6 +33,7 @@ If your project already has `.agent/skills`, merge carefully and keep the versio
 - `.agent/workflows/*`
 - `.agent/agents/*`
 - `.agent/tests/*`
+- `~/.gemini/GEMINI.md` (global rules, skipped if already exists without `--force`)
 
 Runtime tracking file:
 

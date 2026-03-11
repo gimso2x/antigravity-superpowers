@@ -1,10 +1,15 @@
-import { access, cp, rm, stat } from "node:fs/promises";
+import { access, cp, mkdir, rm, stat } from "node:fs/promises";
 import { constants as fsConstants } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join, resolve } from "node:path";
+import { homedir as osHomedir } from "node:os";
 
 function getTemplateDir() {
   return fileURLToPath(new URL("../../templates/.agent", import.meta.url));
+}
+
+function getGeminiTemplateFile() {
+  return fileURLToPath(new URL("../../templates/GEMINI.md", import.meta.url));
 }
 
 async function exists(path) {
@@ -57,7 +62,7 @@ async function validateTargetDir(targetDir) {
   }
 }
 
-export async function initCommand(args, { cwd, stdout, stderr }) {
+export async function initCommand(args, { cwd, stdout, stderr, homedir }) {
   let parsed;
   try {
     parsed = parseInitArgs(args);
@@ -96,6 +101,10 @@ export async function initCommand(args, { cwd, stdout, stderr }) {
     await cp(templateDir, agentDir, { recursive: true });
 
     stdout.write(`Initialized Antigravity Superpowers profile at ${agentDir}\n`);
+
+    // GEMINI.md 글로벌 룰 설치
+    await installGeminiGlobalRules({ stdout, force: parsed.force, homedir });
+
     stdout.write("Next step: bash .agent/tests/run-tests.sh\n");
     stdout.write(
       "Note: docs/plans/task.md is created at runtime by skills when task tracking starts.\n",
@@ -106,4 +115,28 @@ export async function initCommand(args, { cwd, stdout, stderr }) {
     stderr.write(`Init failed: ${message}\n`);
     return 1;
   }
+}
+
+async function installGeminiGlobalRules({ stdout, force, homedir }) {
+  const home = homedir ?? osHomedir();
+  const geminiDir = join(home, ".gemini");
+  const geminiFile = join(geminiDir, "GEMINI.md");
+  const templateFile = getGeminiTemplateFile();
+
+  const templateFileExists = await exists(templateFile);
+  if (!templateFileExists) {
+    // 번들에 GEMINI.md가 없으면 조용히 건너뜀
+    return;
+  }
+
+  await mkdir(geminiDir, { recursive: true });
+
+  const geminiExists = await exists(geminiFile);
+  if (geminiExists && !force) {
+    stdout.write(`Global rules already exist at ${geminiFile} (use --force to replace).\n`);
+    return;
+  }
+
+  await cp(templateFile, geminiFile);
+  stdout.write(`Installed global rules at ${geminiFile}\n`);
 }

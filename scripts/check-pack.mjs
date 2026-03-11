@@ -47,6 +47,7 @@ const required = [
   "templates/.agent/skills/web-design-guidelines/SKILL.md",
   "templates/.agent/skills/react-best-practices/SKILL.md",
   "templates/.agent/skills/composition-patterns/SKILL.md",
+  "templates/GEMINI.md",
 ];
 
 const missing = required.filter((path) => !packagedPaths.has(path));
