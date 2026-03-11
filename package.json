@@ -1,10 +1,10 @@
 {
-  "name": "antigravity-superpowers",
+  "name": "antigravity-super-ssuk",
   "version": "0.2.0",
   "description": "CLI to initialize the Antigravity Superpowers .agent profile",
   "type": "module",
   "bin": {
-    "antigravity-superpowers": "bin/antigravity-superpowers.js"
+    "antigravity-super-ssuk": "bin/antigravity-super-ssuk.js"
   },
   "files": [
     "bin/",

@@ -13,14 +13,14 @@ This package is a standalone Antigravity profile. It does not modify the origina
 From your project root:
 
 ```bash
-npx antigravity-superpowers init
+npx antigravity-super-ssuk init
 ```
 
 Or manually:
 
 ```bash
 mkdir -p .agent
-cp -R /path/to/antigravity-superpowers-cli/templates/.agent/* .agent/
+cp -R /path/to/antigravity-super-ssuk-cli/templates/.agent/* .agent/
 ```
 
 If your project already has `.agent/skills`, merge carefully and keep the versions you want.

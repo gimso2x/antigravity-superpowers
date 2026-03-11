@@ -19,7 +19,7 @@ if (!filename || !Array.isArray(files)) {
 
 const packagedPaths = new Set(files.map((file) => file.path));
 const required = [
-  "bin/antigravity-superpowers.js",
+  "bin/antigravity-super-ssuk.js",
   "src/cli.js",
   "src/commands/init.js",
   "templates/.agent/AGENTS.md",

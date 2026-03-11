@@ -8,7 +8,7 @@ import assert from "node:assert/strict";
 
 const cliPath = resolve(
   process.cwd(),
-  "bin/antigravity-superpowers.js",
+  "bin/antigravity-super-ssuk.js",
 );
 
 async function pathExists(path) {

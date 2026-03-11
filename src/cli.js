@@ -2,10 +2,11 @@ import { initCommand } from "./commands/init.js";
 
 function helpText() {
   return [
-    "antigravity-superpowers",
+    "antigravity-super-ssuk",
+    "CLI to initialize the Antigravity Superpowers .agent profile",
     "",
     "Usage:",
-    "  antigravity-superpowers init [target-directory] [--force]",
+    "  antigravity-super-ssuk init [target-directory] [--force]",
     "",
     "Commands:",
     "  init      Initialize .agent profile in a project",

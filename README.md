@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="asset/banner.png" alt="antigravity-superpowers" width="100%" />
+  <img src="asset/banner.png" alt="antigravity-super-ssuk" width="100%" />
 </p>
 
-<h1 align="center">antigravity-superpowers</h1>
+<h1 align="center">antigravity-super-ssuk</h1>
 
 <p align="center">
   <strong>Bring the power of <a href="https://github.com/obra/superpowers">Superpowers</a> to <a href="https://antigravity.google/">Antigravity</a>.</strong>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/antigravity-superpowers"><img src="https://img.shields.io/npm/v/antigravity-superpowers.svg" alt="npm version" /></a>
-  <a href="https://www.npmjs.com/package/antigravity-superpowers"><img src="https://img.shields.io/npm/dm/antigravity-superpowers.svg" alt="npm downloads" /></a>
+  <a href="https://www.npmjs.com/package/antigravity-super-ssuk"><img src="https://img.shields.io/npm/v/antigravity-super-ssuk.svg" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/antigravity-super-ssuk"><img src="https://img.shields.io/npm/dm/antigravity-super-ssuk.svg" alt="npm downloads" /></a>
   <img src="https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg" alt="node version" />
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
 </p>
@@ -24,7 +24,7 @@ Superpowers is an incredible skill-based workflow system that gives AI coding as
 > **One command. Full profile. Ready to go.**
 
 ```bash
-npx antigravity-superpowers init
+npx antigravity-super-ssuk init
 ```
 
 ---
@@ -73,27 +73,27 @@ Plus supporting infrastructure: workflows, agents, validation tests, and an `AGE
 
 ```bash
 # Scaffold the .agent profile into your project
-npx antigravity-superpowers init
+npx antigravity-super-ssuk init
 ```
 
 Or install globally:
 
 ```bash
-npm install -g antigravity-superpowers
-antigravity-superpowers init
+npm install -g antigravity-super-ssuk
+antigravity-super-ssuk init
 ```
 
 ### Options
 
 ```bash
 # Initialize in current directory
-antigravity-superpowers init
+antigravity-super-ssuk init
 
 # Initialize in a specific project
-antigravity-superpowers init /path/to/project
+antigravity-super-ssuk init /path/to/project
 
 # Replace an existing .agent profile
-antigravity-superpowers init --force
+antigravity-super-ssuk init --force
 ```
 
 After init, verify everything is wired up:
