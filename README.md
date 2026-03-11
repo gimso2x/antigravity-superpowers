@@ -35,7 +35,7 @@ The original Superpowers repo doesn't support Antigravity, and there's no offici
 
 This is my attempt to bring the full Superpowers skill set to Antigravity — as close to the original as possible. The goal was never to fork and diverge; it was to translate just enough to make everything work natively on a different platform. Superpowers skills bring real structure to AI-assisted development — brainstorming before implementation, planning before coding, verification before completion claims — and that discipline shouldn't be locked to one platform.
 
-This port keeps **12 out of 14 original skills intact** and consolidates the remaining 2 into a single new skill that fits Antigravity's execution model. Every skill preserves its original intent, logic, and flow — only the platform-specific references, tool names, and execution primitives have been adapted.
+This port keeps **11 out of 14 original skills intact**, consolidates 2 into a single new skill for Antigravity's sequential model, and removes 2 that were platform-specific or redundant. Every skill preserves its original intent, logic, and flow — only the platform-specific references, tool names, and execution primitives have been adapted.
 
 ---
 
@@ -43,8 +43,6 @@ This port keeps **12 out of 14 original skills intact** and consolidates the rem
 
 **13 skills** covering the full development lifecycle:
 
-| Skill                            | Description                                             |
-| -------------------------------- | ------------------------------------------------------- |
 | `brainstorming`                  | Structured exploration before committing to an approach |
 | `writing-plans`                  | Detailed, step-by-step implementation plans             |
 | `executing-plans`                | Disciplined plan execution with progress tracking       |
@@ -54,10 +52,18 @@ This port keeps **12 out of 14 original skills intact** and consolidates the rem
 | `requesting-code-review`         | Structured review flow with checklists                  |
 | `receiving-code-review`          | Handling feedback systematically                        |
 | `verification-before-completion` | Prove it works before claiming it's done                |
-| `finishing-a-development-branch` | Clean branch wrap-up with workflow options              |
-| `using-git-worktrees`            | Parallel branch management                              |
+| `frontend-agent` / `backend-agent`| Specialized domain expertise for implementation         |
+| `qa-agent`                       | Deep architectural & non-functional verification        |
 | `using-superpowers`              | Skill routing and session bootstrap                     |
 | `writing-skills`                 | Create new skills that follow the system's conventions  |
+
+Plus **Guided Multi-Model Workflows**:
+
+| Command        | Description                                                                 |
+| -------------- | --------------------------------------------------------------------------- |
+| `/superpowers` | **Master Orchestrator**: Guided 5-phase cycle with model switching advice   |
+| `/commit`      | **Git Commit Workflow**: Structured staging and branch-based commit messages|
+
 
 Plus supporting infrastructure: workflows, agents, validation tests, and an `AGENTS.md` contract that ties it all together.
 
@@ -100,13 +106,33 @@ bash .agent/tests/run-tests.sh
 
 ## How It Works
 
-The CLI copies a complete `.agent` profile into your project root. Once initialized, Antigravity picks up the profile automatically:
+The CLI copies a complete `.agent` profile into your project root. Once initialized, Antigravity picks up the profile automatically.
 
-1. **Session starts** — loads `.agent/AGENTS.md` rules and `using-superpowers` skill
-2. **Each request gets routed** to the most relevant skill
-3. **Design work** flows through brainstorming → planning → execution
-4. **Every task** is tracked in `docs/plans/task.md` (created at runtime)
-5. **Nothing is marked done** without running verification commands first
+### 1. Guided Cycle (`/superpowers`)
+
+The recommended way to use Superpowers is through the `/superpowers` command. It orchestrates the full development lifecycle across 5 distinct phases, guiding you on the optimal AI model for each:
+
+- **Phase 1: Brainstorming** (Claude Opus) — Explore requirements and design.
+- **Phase 2: Planning** (Claude Opus) — Draft a step-by-step implementation plan.
+- **Phase 3: Implementation** (Gemini) — Execute tasks sequentially (with TDD/Debugging skills).
+- **Phase 4: Verification** (Gemini) — Run tests, builds, and linters.
+- **Phase 5: Finishing** (Claude Opus) — Final code review and `/commit`.
+
+### 2. Native Multi-Model Strategy
+
+Antigravity Superpowers encourages using the best tool for the job:
+- **Claude Opus**: Superior at creative reasoning, architectural planning, and analytical code review.
+- **Gemini**: Outstanding at fast code generation, tool execution (Terminal/Browser), and rapid verification.
+
+The `/superpowers` workflow includes **Transition Gates** at each phase to prompt you for model confirmation or switching.
+
+### 3. Automated Skill Routing
+
+For ad-hoc requests (without slash commands), Antigravity still routes your request to the most relevant skill:
+1. **Each request gets routed** to the most relevant skill via `AGENTS.md`.
+2. **Design work** flows through brainstorming → planning → execution.
+3. **Every task** is tracked in `docs/plans/task.md` (created at runtime).
+4. **Nothing is marked done** without running verification commands first.
 
 ```
 Session Start → Load AGENTS.md → Load using-superpowers
@@ -141,6 +167,8 @@ The one notable structural change. The original Superpowers dispatches multiple 
 | `dispatching-parallel-agents` | Merged into `single-flow-task-execution`                        |
 | `subagent-driven-development` | Merged into `single-flow-task-execution`                        |
 | `single-flow-task-execution`  | **New** — consolidates decomposition, queuing, and review loops |
+| `finishing-a-development-branch` | **Removed** — replaced by manual review & `/commit` workflow   |
+| `using-git-worktrees`         | **Removed** — simplified branch management                      |
 
 ### Task Tracking
 
