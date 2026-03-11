@@ -44,6 +44,9 @@ const required = [
   "templates/.agent/skills/backend-agent/SKILL.md",
   "templates/.agent/skills/frontend-agent/SKILL.md",
   "templates/.agent/skills/qa-agent/SKILL.md",
+  "templates/.agent/skills/web-design-guidelines/SKILL.md",
+  "templates/.agent/skills/react-best-practices/SKILL.md",
+  "templates/.agent/skills/composition-patterns/SKILL.md",
 ];
 
 const missing = required.filter((path) => !packagedPaths.has(path));

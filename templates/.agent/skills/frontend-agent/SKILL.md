@@ -130,6 +130,16 @@ interface ComponentProps {
 - Implement CSRF protection for state-changing mutations
 - Validate API responses with Zod or similar schema validation
 
+## Related Skills
+
+이 스킬과 함께 사용하면 더 높은 품질의 프론트엔드 코드를 작성할 수 있습니다:
+
+- **`.agent/skills/react-best-practices/SKILL.md`** — Vercel Engineering의 React/Next.js 성능 최적화 가이드라인 (waterfall 제거, 번들 최적화, 서버/클라이언트 패턴)
+- **`.agent/skills/composition-patterns/SKILL.md`** — React 컴포지션 패턴 (compound components, boolean prop 대체, state 관리)
+- **`.agent/skills/web-design-guidelines/SKILL.md`** — Web Interface Guidelines 기반 UI 코드 리뷰
+
+> **사용법**: 구현 중 특정 패턴이 필요하면 해당 스킬의 `SKILL.md`를 로드합니다. 전체 컴파일 가이드는 각 스킬의 `AGENTS.md`를 참조합니다.
+
 ## After Implementation
 
 1. Run TypeScript type checker: `npx tsc --noEmit`
