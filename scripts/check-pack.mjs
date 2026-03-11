@@ -28,6 +28,8 @@ const required = [
   "templates/.agent/workflows/brainstorm.md",
   "templates/.agent/workflows/write-plan.md",
   "templates/.agent/workflows/execute-plan.md",
+  "templates/.agent/workflows/superpowers.md",
+  "templates/.agent/workflows/commit.md",
   "templates/.agent/agents/code-reviewer.md",
   "templates/.agent/tests/run-tests.sh",
   "templates/.agent/tests/check-antigravity-profile.sh",
@@ -39,6 +41,9 @@ const required = [
   "templates/.agent/skills/verification-before-completion/SKILL.md",
   "templates/.agent/skills/writing-plans/SKILL.md",
   "templates/.agent/skills/test-driven-development/SKILL.md",
+  "templates/.agent/skills/backend-agent/SKILL.md",
+  "templates/.agent/skills/frontend-agent/SKILL.md",
+  "templates/.agent/skills/qa-agent/SKILL.md",
 ];
 
 const missing = required.filter((path) => !packagedPaths.has(path));
