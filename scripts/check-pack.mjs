@@ -47,6 +47,9 @@ const required = [
   "templates/.agent/skills/web-design-guidelines/SKILL.md",
   "templates/.agent/skills/react-best-practices/SKILL.md",
   "templates/.agent/skills/composition-patterns/SKILL.md",
+  "templates/.agent/skills/clean-code/SKILL.md",
+  "templates/.agent/skills/frontend-security-coder/SKILL.md",
+  "templates/.agent/skills/nextjs-best-practices/SKILL.md",
   "templates/GEMINI.md",
 ];
 
